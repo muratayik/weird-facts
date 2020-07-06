@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
+
 import { AnimalFactList, AnimalSelect } from 'component/animal'
+import { Spinner } from 'component/spinner'
 import { fetchAnimal } from 'store/animal/actions'
 
 const Animal = () => {
@@ -26,7 +28,8 @@ const Animal = () => {
                 setSelectedAnimal={setSelectedAnimal} />
 
             {animal.fetchStatus === 'fetching' && (
-                <p>Loading...</p>
+
+                <Spinner />
             )}
 
             {selectedAnimal && animal[selectedAnimal] && (
