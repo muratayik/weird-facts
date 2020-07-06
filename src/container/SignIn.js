@@ -1,11 +1,15 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 
 import { CredentialsForm } from 'component/form'
+import { trySignIn } from 'store/auth/actions'
 
 const SignIn = () => {
 
+    const dispatch = useDispatch()
+
     const onFormSubmit = async (formValues) => {
-        console.log(formValues)
+        dispatch(trySignIn(formValues))
     }
 
     return (
