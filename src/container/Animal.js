@@ -1,44 +1,39 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-
-import { AnimalFactList, AnimalSelect } from 'component/animal'
-import { Spinner } from 'component/spinner'
-import { fetchAnimal } from 'store/animal/actions'
+import { AnimalFactList, AnimalSelect } from "component/animal";
+import { Spinner } from "component/spinner";
+import { fetchAnimal } from "store/animal/actions";
 
 const Animal = () => {
+  const dispatch = useDispatch();
 
-    const dispatch = useDispatch()
+  const animal = useSelector((root) => root.animal);
 
-    const animal = useSelector(root => root.animal)
+  const [selectedAnimal, setSelectedAnimal] = useState("");
 
-    const [selectedAnimal, setSelectedAnimal] = useState('')
+  useEffect(() => {
+    if (!selectedAnimal) return;
 
-    useEffect(() => {
-        if (!selectedAnimal) return
+    !animal[selectedAnimal] && dispatch(fetchAnimal(selectedAnimal));
 
-        !animal[selectedAnimal] && dispatch(fetchAnimal(selectedAnimal))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedAnimal]);
 
-    }, [selectedAnimal])
+  return (
+    <>
+      <AnimalSelect
+        selectedAnimal={selectedAnimal}
+        setSelectedAnimal={setSelectedAnimal}
+      />
 
-    return (
-        <>
-            <AnimalSelect
-                selectedAnimal={selectedAnimal}
-                setSelectedAnimal={setSelectedAnimal} />
+      {animal.fetchStatus === "fetching" && <Spinner />}
 
-            {animal.fetchStatus === 'fetching' && (
+      {selectedAnimal && animal[selectedAnimal] && (
+        <AnimalFactList animalFacts={animal[selectedAnimal]} />
+      )}
+    </>
+  );
+};
 
-                <Spinner />
-            )}
-
-            {selectedAnimal && animal[selectedAnimal] && (
-                <AnimalFactList
-                    animalFacts={animal[selectedAnimal]} />
-            )}
-        </>
-    )
-
-}
-
-export default Animal
+export default Animal;
