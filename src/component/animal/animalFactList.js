@@ -1,13 +1,10 @@
 import React from 'react'
 
 import { Avatar, Card, CardContent, CardHeader, Grid, Typography } from '@material-ui/core'
-import faker from 'faker'
 
 import { useStyles } from './animalFactList.styling'
 
 const AnimalFactList = ({ animalFacts }) => {
-
-    console.log(faker.date.past().toDateString())
 
 
     const classes = useStyles()
@@ -25,16 +22,14 @@ const AnimalFactList = ({ animalFacts }) => {
 
 const AnimalFactListItem = ({ animalFact, classes }) => {
 
-    const userName = faker.name.findName()
-
     return (
         <Card className={classes.card}>
             <CardHeader
                 avatar={
-                    <Avatar aria-label="recipe" src={faker.image.avatar()} />
+                    <Avatar aria-label="recipe" src={animalFact.avatar} />
                 }
-                title={`${userName}`}
-                subheader={faker.date.past().toDateString()}
+                title={animalFact.userName}
+                subheader={animalFact.postingDate}
             />
             <CardContent>
                 <Typography variant="body1" color="textSecondary" component="p">

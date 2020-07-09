@@ -14,7 +14,7 @@ export const fetchAnimal = (animalType) => async dispatch => {
             type: FETCH_SUCCESS,
             payload: {
                 animalType,
-                list: response.all
+                list: response
             }
         })
     } catch (e) {
