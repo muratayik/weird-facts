@@ -3,7 +3,7 @@ export const START_FETCHING = 'animal/START_FETCHING'
 export const FETCH_SUCCESS = 'animal/FETCH_SUCCESS'
 export const FETCH_FAILURE = 'animal/FETCH_FAILURE'
 
-const initialState = {
+export const initialState = {
     cat: null,
     dog: null,
     horse: null,

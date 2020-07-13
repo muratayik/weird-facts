@@ -2,7 +2,7 @@
 export const SIGNIN_SUCCESS = 'user/SIGNIN_SUCCESS'
 export const SIGNIN_FAILURE = 'user/SIGNIN_FAILURE'
 
-const initialState = {
+export const initialState = {
     signInError: null
 }
 

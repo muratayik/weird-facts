@@ -3,7 +3,7 @@ export const USER_FETCH_SUCCESS = 'auth/USER_FETCH_SUCCESS'
 export const USER_FETCH_FAILURE = 'auth/USER_FETCH_FAILURE'
 export const USER_FETCH_RESET = 'auth/USER_FETCH_RESET'
 
-const initialState = {
+export const initialState = {
     isUserFetched: false,
     email: null,
     error: null
