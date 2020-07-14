@@ -1,16 +1,16 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 import {
     AppBar,
     Toolbar,
-    IconButton,
     Typography
 } from '@material-ui/core'
-import { ExitToApp } from '@material-ui/icons'
 
 import { useStyles } from './header.styling'
+import HeaderLinks from './header.links'
+import HeaderUserInfo from './header.userInfo'
+import HeaderSignOut from './header.signout'
 import { signOut } from 'store/auth/actions'
 
 const Header = () => {
@@ -32,30 +32,11 @@ const Header = () => {
                     <Typography variant="h6">
                         Weird Facts
                     </Typography>
-                    {user.isUserFetched && (
-                        <>
-                            <Link to={'/animal'}>
-                                <Typography className={classes.linkItem}>
-                                    Animals
-                                </Typography>
-                            </Link>
-                            <div className={classes.userInfo}>
-                                <Typography className={classes.linkItem}>
-                                    {user.email}
-                                </Typography>
-                                <IconButton
-                                    aria-label="account of current user"
-                                    aria-controls="menu-appbar"
-                                    aria-haspopup="true"
-                                    onClick={onSignOut}
-                                    color="inherit"
-                                    className={classes.logoutIcon}
-                                >
-                                    <ExitToApp />
-                                </IconButton>
-                            </div>
-                        </>
-                    )}
+                    <HeaderLinks user={user} />
+                    <div className={classes.userInfo}>
+                        <HeaderUserInfo user={user} />
+                        <HeaderSignOut user={user} onClick={onSignOut} />
+                    </div>
                 </Toolbar>
             </AppBar>
         </>
